@@ -2,7 +2,7 @@
 	<head>
 		<title>Laravel</title>
 		
-		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Open Sans:100' rel='stylesheet' type='text/css'>
 
 		<style>
 			body {
@@ -10,10 +10,10 @@
 				padding: 0;
 				width: 100%;
 				height: 100%;
-				color: #B0BEC5;
 				display: table;
 				font-weight: 100;
-				font-family: 'Lato';
+				font-family: 'Open Sans';
+        background: #F2F7F9;
 			}
 
 			.container {
@@ -28,20 +28,25 @@
 			}
 
 			.title {
-				font-size: 96px;
-				margin-bottom: 40px;
+				font-size: 76px;
+        color:#dc4c4c;
+        text-shadow:1px 1px #FFF;
 			}
 
 			.quote {
+        margin-top: 30px;
 				font-size: 24px;
+        color:#3e474f;
+        text-shadow:1px 1px #FFF;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="container">
 			<div class="content">
-				<div class="title">Laravel 5</div>
+				<div class="title">Welcome to Aecore!</div>
 				<div class="quote">{{ Inspiring::quote() }}</div>
+        <p><a href="/login" title="Log In to Aecore.">Log in to alpha</a></p>
 			</div>
 		</div>
 	</body>
