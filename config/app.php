@@ -145,6 +145,15 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		// Added services
+    'Aws\Laravel\AwsServiceProvider',
+    'Illuminate\Html\HtmlServiceProvider',
+    'Intervention\Image\ImageServiceProvider',
+    'Intervention\Image\ImageServiceProvider',
+    'Monarobase\CountryList\CountryListServiceProvider',
+    'Morrislaptop\LaravelFivePackageBridges\ConfigServiceProvider', //bridge
+    'Morrislaptop\LaravelFivePackageBridges\Bridges\TimezoneServiceProvider',
+      
 	],
 
 	/*
@@ -193,6 +202,15 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
+		//Added aliases
+    'AWS'       => 'Aws\Laravel\AwsFacade',
+    'Carbon'    => 'Carbon\Carbon',
+    'Countries' => 'Monarobase\CountryList\CountryListFacade',
+    'Debugbar'  => 'Barryvdh\Debugbar\Facade',
+    'Form'      => 'Illuminate\Html\FormFacade',
+    'Html'      => 'Illuminate\Html\HtmlFacade',
+    'Image'     => 'Intervention\Image\Facades\Image',
+      
 	],
 
 ];
