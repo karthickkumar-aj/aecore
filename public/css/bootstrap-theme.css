@@ -238,9 +238,9 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffffffff', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   border-radius: 2px;
-  border-bottom:1px solid #ddd;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 5px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 5px rgba(0, 0, 0, 0.075);
+  border-bottom:1px solid #d5d5d5;
+  -webkit-box-shadow: inset 0 1px 0 rgba(250, 250, 250, 0.15), 0 1px 5px rgba(0, 0, 0, 0.065);
+  box-shadow: inset 0 1px 0 rgba(250, 250, 250, 0.15), 0 1px 5px rgba(0, 0, 0, 0.065);
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .active > a {
