@@ -22,8 +22,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'email', 'username', 'password', 'token'];
-  // token = random string (10) unique identifier used throughout the site to prevent single digit user id entries.
+	protected $fillable = ['name', 'email', 'username', 'password', 'usercode', 'title', 'status', 'signup_step', 'company_id', 'company_user_access', 'company_user_status'];
+  // usercode = random string (10) unique identifier used throughout the site to prevent single digit user id entries.
   
 	/**
 	 * The attributes excluded from the model's JSON form.
