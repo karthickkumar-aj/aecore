@@ -2,7 +2,7 @@
 	<head>
 		<title>Laravel</title>
 		
-		<link href='//fonts.googleapis.com/css?family=Open Sans:100' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=OpenSans:100' rel='stylesheet' type='text/css'>
 
 		<style>
 			body {
@@ -12,7 +12,7 @@
 				height: 100%;
 				display: table;
 				font-weight: 100;
-				font-family: 'Open Sans';
+				font-family: Open Sans;
         background: #F2F7F9;
 			}
 
