@@ -1,53 +1,51 @@
+<!doctype html>
 <html>
-	<head>
-		<title>Laravel</title>
-		
-		<link href='//fonts.googleapis.com/css?family=OpenSans:100' rel='stylesheet' type='text/css'>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Project management software for construction.">
+    <title>Aecore</title>
 
-		<style>
-			body {
-				margin: 0;
-				padding: 0;
-				width: 100%;
-				height: 100%;
-				display: table;
-				font-weight: 100;
-				font-family: Open Sans;
-        background: #F2F7F9;
-			}
-
-			.container {
-				text-align: center;
-				display: table-cell;
-				vertical-align: middle;
-			}
-
-			.content {
-				text-align: center;
-				display: inline-block;
-			}
-
-			.title {
-				font-size: 76px;
-        color:#dc4c4c;
-        text-shadow:1px 1px #FFF;
-			}
-
-			.quote {
-        margin-top: 30px;
-				font-size: 24px;
-        color:#3e474f;
-        text-shadow:1px 1px #FFF;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<div class="content">
-				<div class="title">Welcome to Aecore!</div>
-				<div class="quote">{{ Inspiring::quote() }}</div>
-        <p><a href="/login" title="Log In to Aecore.">Log in to alpha</a></p>
-			</div>
-		</div>
-	</body>
+    <!-- load js dependencies -->
+    <script type="text/javascript" src="{!! asset('/js/jquery-2.1.3.min.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('/js/jquery-ui/jquery-ui.min.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('/js/bootstrap.min.js') !!}"></script>
+    <script type="text/javascript">
+      $(function(){
+        $('body').on('hidden.bs.modal', '.modal', function () {
+          $(this).removeData('bs.modal');
+        });
+      });
+    </script>
+    
+    <!-- load css -->
+    <link rel="shortcut icon" href="{!! asset('/css/img/appicons/favicon.ico') !!}">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/css/bootstrap.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/css/bootstrap-theme.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/css/bootstrap-theme-mods.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/js/jquery-ui/css/jquery-ui.css') !!}">
+  </head>
+  
+  <body>
+    <header class="row">
+      <nav class="navbar navbar-fixed-top navbar-default">
+        <div class="container">
+          @include('layouts.storefront.header')
+        </div>
+      </nav>
+    </header>
+    @yield('content')
+    <footer class="row">
+    </footer>
+    
+    <!-- Initialize Modal -->
+    <div class="modal fade" id="modal" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        </div> <!-- End Modal Content -->
+      </div> <!-- End Modal Dialog -->
+    </div> <!-- End Modal -->
+  </body>
 </html>

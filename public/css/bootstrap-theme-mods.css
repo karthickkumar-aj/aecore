@@ -1,0 +1,53 @@
+/* Nav Bar */
+.navbar-brand {
+  height:30px;
+  width:102px;
+  margin:10px 10px 0 0;
+  background:url('img/logos/aecore-topbar.svg') 0 0 no-repeat;
+  display:inline-block;
+}
+@media (max-width: 767px) {
+  .navbar-brand {
+    height:30px;
+    width:30px;
+    margin:10px 10px 0 15px;
+    background:url('img/logos/aecore-topbar-icon.svg') 0 -30px no-repeat;
+    display:inline-block;
+  }
+}
+
+/* Top Bar Links */
+.navbar-nav > li > a {
+  padding:15px 12px 12px 12px;
+  color:#dc4c4c;
+  border-bottom:3px solid #FFF;
+}
+.navbar-nav > li > a.navbar-link:hover {
+  color:#dc4c4c;
+  border-bottom:3px solid #dc4c4c;
+  transition: border-color 0.2s linear;
+      -moz-transition: border-color 0.2s linear;    /* FF3.7+ */
+      -o-transition: border-color 0.2s linear;      /* Opera 10.5 */
+      -webkit-transition: border-color 0.2s linear; /* Saf3.2+, Chrome */
+}
+.navbar-nav > li > a.navbar-link-active {
+  color:#DA4B4B;
+  border-bottom:3px solid #DA4B4B;
+  font-weight:bold;
+}
+.navbar-nav > li > a.navbar-link-active:hover {
+  color:#DA4B4B;
+  border-bottom:3px solid #DA4B4B;
+  transition: border-color 0.2s linear;
+      -moz-transition: border-color 0.2s linear;    /* FF3.7+ */
+      -o-transition: border-color 0.2s linear;      /* Opera 10.5 */
+      -webkit-transition: border-color 0.2s linear; /* Saf3.2+, Chrome */
+}
+@media (max-width: 767px) {
+  .navbar-nav > li > a.navbar-link {
+    border-bottom:none;
+  }
+  .navbar-nav > li > a.navbar-link:hover {
+    border-bottom:none;
+  }
+}
