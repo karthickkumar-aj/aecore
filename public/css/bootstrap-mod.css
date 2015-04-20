@@ -16,7 +16,7 @@ body {
 .navbar-brand {
   height:30px;
   width:102px;
-  margin:10px 10px 0 0;
+  margin:10px 15px 0 0;
   background:url('img/logos/aecore-topbar.svg') 0 0 no-repeat;
   display:inline-block;
 }
@@ -24,7 +24,7 @@ body {
   .navbar-brand {
     height:30px;
     width:30px;
-    margin:10px 10px 0 15px;
+    margin:10px 15px 0 15px;
     background:url('img/logos/aecore-topbar-icon.svg') 0 -30px no-repeat;
     display:inline-block;
   }
@@ -40,9 +40,9 @@ body {
   color:#dc4c4c;
   border-bottom:3px solid #dc4c4c;
   transition: border-color 0.2s linear;
-      -moz-transition: border-color 0.2s linear;    /* FF3.7+ */
-      -o-transition: border-color 0.2s linear;      /* Opera 10.5 */
-      -webkit-transition: border-color 0.2s linear; /* Saf3.2+, Chrome */
+  -moz-transition: border-color 0.2s linear;    /* FF3.7+ */
+  -o-transition: border-color 0.2s linear;      /* Opera 10.5 */
+  -webkit-transition: border-color 0.2s linear; /* Saf3.2+, Chrome */
 }
 .navbar-nav > li > a.navbar-link-active {
   color:#DA4B4B;
@@ -53,9 +53,9 @@ body {
   color:#DA4B4B;
   border-bottom:3px solid #DA4B4B;
   transition: border-color 0.2s linear;
-      -moz-transition: border-color 0.2s linear;    /* FF3.7+ */
-      -o-transition: border-color 0.2s linear;      /* Opera 10.5 */
-      -webkit-transition: border-color 0.2s linear; /* Saf3.2+, Chrome */
+  -moz-transition: border-color 0.2s linear;    /* FF3.7+ */
+  -o-transition: border-color 0.2s linear;      /* Opera 10.5 */
+  -webkit-transition: border-color 0.2s linear; /* Saf3.2+, Chrome */
 }
 @media (max-width: 767px) {
   .navbar-nav > li > a.navbar-link {
@@ -63,6 +63,67 @@ body {
   }
   .navbar-nav > li > a.navbar-link:hover {
     border-bottom:none;
+  }
+  .navbar-nav > li > a.navbar-link-active {
+    border-bottom:3px solid #FFF;
+  }  
+  .navbar-nav > li > a.navbar-link-active:hover {
+    border-bottom:3px solid #FFF;
+  }  
+}
+
+/* Avatars */
+.avatar_upload {
+  margin-left:90px;
+}
+.avatar_xs {
+  width:20px;
+  height:20px;
+  margin:0 5px 0 0;
+  border-radius:2px;
+  float:left;
+}
+.avatar_sm {
+  width:34px;
+  height:34px;
+  margin:0 8px 0 0;
+  border-radius:3px;
+  float:left;
+}
+.avatar_md {
+  width:40px;
+  height:40px;
+  border-radius:3px;
+  float:left;
+}
+.avatar_lg {
+  width:75px;
+  height:75px;
+  border-radius:3px;
+  float:left;
+}
+.avatar_company {
+  width:32px;
+  height:32px;
+  margin-right:5px;
+  float:left;
+}
+.logo_company {
+  max-width:200px;
+  max-height:75px;
+  margin-bottom:15px;
+}
+.avatar_navbar {
+  width:28px;
+  height:28px;
+  margin:-4px 5px 0 0;
+  border-radius:14px;
+  float:left;
+}
+@media (max-width: 767px) {
+  .avatar_xs {
+    margin:0;
+    float:none;
   }
 }
 
