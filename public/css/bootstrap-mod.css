@@ -1,4 +1,18 @@
+/* Body */
+body {
+  padding-top:51px;
+  font-family:arial, helvetic, sans-serif;
+}
+
+.bold { font-weight:bold; }
+.btn-spacer-left { margin-left:8px; }
+
 /* Nav Bar */
+.navbar-default {
+  border-bottom:1px solid #d5d5d5;
+  -webkit-box-shadow: inset 0 1px 0 rgba(250, 250, 250, 0.15), 0 1px 5px rgba(0, 0, 0, 0.065);
+  box-shadow: inset 0 1px 0 rgba(250, 250, 250, 0.15), 0 1px 5px rgba(0, 0, 0, 0.065);
+}
 .navbar-brand {
   height:30px;
   width:102px;
@@ -51,3 +65,12 @@
     border-bottom:none;
   }
 }
+
+/* Control Labels */
+label {
+  color:#666;
+}
+
+
+/* Margin, must be last! */
+.no-margin { margin:0; }

@@ -1,0 +1,1 @@
+You are logged in! {!! link_to('auth/logout', 'Log Out', array('class' => 'navbar-link')) !!}

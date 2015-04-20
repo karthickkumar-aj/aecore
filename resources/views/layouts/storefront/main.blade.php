@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Project management software for construction.">
+    <meta name="description" content="Project management for construction.">
     <title>Aecore</title>
 
     <!-- load js dependencies -->
@@ -23,8 +23,7 @@
     <link rel="shortcut icon" href="{!! asset('/css/img/appicons/favicon.ico') !!}">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" type="text/css" href="{!! asset('/css/bootstrap.css') !!}">
-    <link rel="stylesheet" type="text/css" href="{!! asset('/css/bootstrap-theme.css') !!}">
-    <link rel="stylesheet" type="text/css" href="{!! asset('/css/bootstrap-theme-mods.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/css/bootstrap-mod.css') !!}">
     <link rel="stylesheet" type="text/css" href="{!! asset('/js/jquery-ui/css/jquery-ui.css') !!}">
   </head>
   
@@ -36,7 +35,11 @@
         </div>
       </nav>
     </header>
-    @yield('content')
+    
+    <div class="container">
+      @yield('content')
+    </div>
+    
     <footer class="row">
     </footer>
     

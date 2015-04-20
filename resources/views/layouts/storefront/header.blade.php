@@ -13,7 +13,6 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      
       @if (Auth::check())
         {!! link_to('projects', '', array('class' => 'navbar-brand')) !!}
       @else
@@ -23,10 +22,10 @@
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::check())
-          <li><a href="/logout" class="navbar-link" title="" data-toggle="tooltip" data-placement="bottom">Log Out</a></li> 
+          <li>{!! link_to('auth/logout', 'Log Out', array('class' => 'navbar-link')) !!}</li>
         @else
-          <li><a href="/signup" class="navbar-link bold" title="It's easy!" data-toggle="tooltip" data-placement="bottom">Sign Up</a></li>
-          <li><a href="/login" class="navbar-link" title="" data-toggle="tooltip" data-placement="bottom">Log In</a></li>
+          <li>{!! link_to('signup', 'Sign Up', array('class' => Request::is('signup') ? 'navbar-link-active' : 'navbar-link', 'title'=>'It\'s Easy!', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom')) !!}</li>
+          <li>{!! link_to('login', 'Log In', array('class' => Request::is('login') ? 'navbar-link-active' : 'navbar-link')) !!}</li>
         @endif
       </ul>
     </div>
