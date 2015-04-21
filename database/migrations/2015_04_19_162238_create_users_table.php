@@ -22,11 +22,11 @@ class CreateUsersTable extends Migration {
 			$table->string('password', 64);
       $table->string('title');
       $table->string('timezone');
-      $table->enum('signup_step', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'complete'])->default('1');
-      $table->enum('status', ['static', 'active', 'disabled'])->default('static');
+      $table->integer('signup_step')->default('1');
+      $table->string('status')->default('static');
       $table->integer('company_id');
-      $table->enum('company_user_access', ['standard', 'admin'])->default('standard');
-      $table->enum('company_user_status', ['active', 'disabled'])->default('disabled');
+      $table->string('company_user_access')->default('standard');
+      $table->string('company_user_status')->default('disabled');
 			$table->rememberToken();
 			$table->timestamps();
 		});

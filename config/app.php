@@ -13,8 +13,8 @@ return [
 	|
 	*/
 
-	//'debug' => env('APP_DEBUG'),
-	'debug' => true,
+  // set APP_DEBUG=true in your .env file
+	'debug' => env('APP_DEBUG'),
     
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,6 @@ return [
 	*/
 
 	'key' => env('APP_KEY', 'SomeRandomString'),
-
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
 	/*
