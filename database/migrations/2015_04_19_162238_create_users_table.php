@@ -20,11 +20,11 @@ class CreateUsersTable extends Migration {
       $table->string('username')->unique();
 			$table->string('email')->unique();
 			$table->string('password', 64);
-      $table->string('title');
-      $table->string('timezone');
+      $table->string('title')->nullable();
+      $table->string('timezone')->nullable();
       $table->integer('signup_step')->default('1');
       $table->string('status')->default('static');
-      $table->integer('company_id');
+      $table->integer('company_id')->nullable();
       $table->string('company_user_access')->default('standard');
       $table->string('company_user_status')->default('disabled');
 			$table->rememberToken();
