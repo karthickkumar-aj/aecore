@@ -20,7 +20,6 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -28,3 +27,13 @@ Route::controllers([
 */
 
 Route::get('projects', 'ProjectsController@index');
+
+
+
+/* TEMPORARY ROUTES FOR UI VIEW DESIGN */
+Route::get('settings/profile', function(){
+  return view('settings.personal.profile');
+});
+Route::get('settings/account', function(){
+  return view('settings.personal.account');
+});

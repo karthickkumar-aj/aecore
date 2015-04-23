@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration {
 			$table->string('email')->unique();
 			$table->string('password', 64);
       $table->string('title')->nullable();
-      $table->string('timezone')->nullable();
+      $table->string('timezone')->default('America/Los_Angeles');
       $table->integer('signup_step')->default('1');
       $table->string('status')->default('static');
       $table->integer('company_id')->nullable();

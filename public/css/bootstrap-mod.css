@@ -1,11 +1,16 @@
 /* Body */
 body {
   padding-top:51px;
-  font-family:arial, helvetic, sans-serif;
+  font-family:Lato, arial, helvetic, sans-serif;
 }
 
 .bold { font-weight:bold; }
 .btn-spacer-left { margin-left:8px; }
+.center {
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
 
 /* Nav Bar */
 .navbar-default {
@@ -24,7 +29,7 @@ body {
   .navbar-brand {
     height:30px;
     width:30px;
-    margin:10px 15px 0 15px;
+    margin:10px 15px 0 0;
     background:url('img/logos/aecore-topbar-icon.svg') 0 -30px no-repeat;
     display:inline-block;
   }
@@ -102,6 +107,20 @@ body {
   border-radius:3px;
   float:left;
 }
+.avatar_profile {
+  width:120px;
+  height:120px;
+  margin:20px auto;
+  border-radius:60px;
+  display:block;
+}
+.avatar_navbar {
+  width:28px;
+  height:28px;
+  margin:-4px 5px 0 0;
+  border-radius:14px;
+  float:left;
+}
 .avatar_company {
   width:32px;
   height:32px;
@@ -113,13 +132,6 @@ body {
   max-height:75px;
   margin-bottom:15px;
 }
-.avatar_navbar {
-  width:28px;
-  height:28px;
-  margin:-4px 5px 0 0;
-  border-radius:14px;
-  float:left;
-}
 @media (max-width: 767px) {
   .avatar_xs {
     margin:0;
@@ -127,11 +139,43 @@ body {
   }
 }
 
+/* Page heading */
+.pagehead {
+  padding:15px 0;
+}
+.pagehead h1 {
+  padding:0;
+  margin:0;
+  font-size:22px;
+  font-family: Open Sans, Arial, sans-serif;
+  line-height:30px;
+  color:#666;
+  text-shadow:1px 1px #FFF;
+}
+
 /* Control Labels */
 label {
   color:#666;
 }
 
+/* List Groups */
+.list-group-topper {
+  padding:15px;
+  border-bottom:1px solid #eee;
+}
+.list-group-item.selected:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  content: "";
+  background-color: #dc4c4c;
+}
+.list-group-item.selected {
+  color:#dc4c4c;
+  font-weight:bold;
+}
 
 /* Margin, must be last! */
 .no-margin { margin:0; }
