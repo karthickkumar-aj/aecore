@@ -4378,7 +4378,7 @@ a.thumbnail.active {
 }
 .alert-danger {
   background-color: #fde0df;
-  border-color: #DD8787;
+  border-color: #E09494;
   color: #dc4c4c;
 }
 .alert-danger hr {
@@ -4907,18 +4907,18 @@ a.list-group-item-danger.active:focus {
   border-bottom-color: #fab13d;
 }
 .panel-danger {
-  border-color: #DD8787;
+  border-color: #E09494;
 }
 .panel-danger > .panel-heading {
   color: #dc4c4c;
   background-color: #fde0df;
-  border-color: #DD8787;
+  border-color: #E09494;
 }
 .panel-danger > .panel-heading + .panel-collapse .panel-body {
-  border-top-color: #dc4c4c;
+  border-top-color: #E09494;
 }
 .panel-danger > .panel-footer + .panel-collapse .panel-body {
-  border-bottom-color: #dc4c4c;
+  border-bottom-color: #E09494;
 }
 .well {
   min-height: 20px;
