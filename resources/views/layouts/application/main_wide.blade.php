@@ -33,16 +33,16 @@
   <body>
     <header class="row">
       <nav class="navbar navbar-fixed-top navbar-default">
-        <div class="container">
+        <div class="container-fluid">
           @include('layouts.application.header')
         </div>
       </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
       @yield('content')
     </div>
     <footer class="row"></footer>
-    
+
     <!-- Initialize Modal -->
     <div class="modal fade" id="modal" data-backdrop="static">
       <div class="modal-dialog">

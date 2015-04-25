@@ -31,6 +31,9 @@ Route::get('projects', 'ProjectsController@index');
 
 
 /* TEMPORARY ROUTES FOR UI VIEW DESIGN */
+Route::get('tasks', function(){
+  return view('tasks.list');
+});
 Route::get('settings/profile', function(){
   return view('settings.personal.profile');
 });
