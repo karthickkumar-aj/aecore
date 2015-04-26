@@ -98,7 +98,8 @@
     <div class="panel panel-default">
       <div class="panel-heading">Change Password</div>
       <div class="panel-body">
-        {!! Form::open(array('url' => 'settings/account/password', 'method' => 'post', 'class' => 'form-horizontal')) !!}
+        {!! Form::open(array('url' => 'settings/account/change-password', 'method' => 'post', 'class' => 'form-horizontal')) !!}
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="form-group">
             {!! Form::label('old_password', 'Old Password', array('class' => 'col-md-3 col-lg-2 control-label')) !!}
             <div class="col-md-9 col-lg-8">

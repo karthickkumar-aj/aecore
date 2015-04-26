@@ -79,6 +79,7 @@
           {!! Form::close() !!}
 
           {!! Form::open(array('url' => 'settings/profile/update', 'method' => 'post', 'class' => 'form-horizontal')) !!}
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="form-group">
             {!! Form::label('name', 'Full Name', array('class' => 'col-md-3 col-lg-2 control-label')) !!}
             <div class="col-md-9 col-lg-8">

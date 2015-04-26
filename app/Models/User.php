@@ -37,7 +37,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     return $this->hasOne('App\Models\Userphone');
   }
   
-  // User functions
+  // User functions  
   public function getGravatarAttribute() {    
     // Defaulting to gravatar until storage is finalized
     $hash = md5(strtolower(trim($this->attributes['email'])));

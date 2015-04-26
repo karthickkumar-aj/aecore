@@ -36,8 +36,7 @@ class RedirectIfAuthenticated {
 		if ($this->auth->check())
 		{
 			return new RedirectResponse(url('/projects'));
-		}
-
+		}    
 		return $next($request);
 	}
 

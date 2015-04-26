@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "2.8.1",
+            "version": "2.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "9715c747724a10c0ba0e3bae741b165730cd1953"
+                "reference": "4237e97388d2906d2aa88f727736968fc2df9cb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/9715c747724a10c0ba0e3bae741b165730cd1953",
-                "reference": "9715c747724a10c0ba0e3bae741b165730cd1953",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4237e97388d2906d2aa88f727736968fc2df9cb6",
+                "reference": "4237e97388d2906d2aa88f727736968fc2df9cb6",
                 "shasum": ""
             },
             "require": {
@@ -71,7 +71,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-04-16 22:25:42"
+            "time": "2015-04-23 20:14:25"
         },
         {
             "name": "aws/aws-sdk-php-laravel",
@@ -526,16 +526,16 @@
         },
         {
             "name": "intervention/image",
-            "version": "2.1.3",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "8f3761154b4c1f5128365dfc32cbf757f27d97b6"
+                "reference": "6626d7624ac0895137a38c123943afedd0827efc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/8f3761154b4c1f5128365dfc32cbf757f27d97b6",
-                "reference": "8f3761154b4c1f5128365dfc32cbf757f27d97b6",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/6626d7624ac0895137a38c123943afedd0827efc",
+                "reference": "6626d7624ac0895137a38c123943afedd0827efc",
                 "shasum": ""
             },
             "require": {
@@ -578,26 +578,26 @@
                 "thumbnail",
                 "watermark"
             ],
-            "time": "2015-03-18 17:41:04"
+            "time": "2015-04-24 14:50:48"
         },
         {
             "name": "intervention/imagecache",
-            "version": "2.1.1",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/imagecache.git",
-                "reference": "72611e41da15d3766e7325fb0dfa9d7290ffc19b"
+                "reference": "20524340a886deb7ee6a917e419305c0f68e2649"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/imagecache/zipball/72611e41da15d3766e7325fb0dfa9d7290ffc19b",
-                "reference": "72611e41da15d3766e7325fb0dfa9d7290ffc19b",
+                "url": "https://api.github.com/repos/Intervention/imagecache/zipball/20524340a886deb7ee6a917e419305c0f68e2649",
+                "reference": "20524340a886deb7ee6a917e419305c0f68e2649",
                 "shasum": ""
             },
             "require": {
                 "illuminate/cache": "~4|~5",
                 "illuminate/filesystem": "~4|~5",
-                "intervention/image": "dev-master|~2,>=2.0.7",
+                "intervention/image": "dev-master|~2,>=2.2.0",
                 "jeremeamia/superclosure": "~1|~2",
                 "php": ">=5.3.0"
             },
@@ -631,7 +631,7 @@
                 "imagick",
                 "laravel"
             ],
-            "time": "2015-01-29 15:58:56"
+            "time": "2015-04-24 14:52:35"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -821,16 +821,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.0.27",
+            "version": "v5.0.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "4d6330118a295086ce9ff8eed2200d5b67f17688"
+                "reference": "06a09429322cf53e5bd4587db1060f02a291562e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/4d6330118a295086ce9ff8eed2200d5b67f17688",
-                "reference": "4d6330118a295086ce9ff8eed2200d5b67f17688",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/06a09429322cf53e5bd4587db1060f02a291562e",
+                "reference": "06a09429322cf53e5bd4587db1060f02a291562e",
                 "shasum": ""
             },
             "require": {
@@ -900,7 +900,7 @@
                 "predis/predis": "~1.0"
             },
             "suggest": {
-                "aws/aws-sdk-php": "Required to use the SQS queue driver (~2.4).",
+                "aws/aws-sdk-php": "Required to use the SQS queue driver and SES mail driver (~2.4).",
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (~2.4).",
                 "guzzlehttp/guzzle": "Required to use the Mailgun and Mandrill mail drivers (~5.0).",
                 "iron-io/iron_mq": "Required to use the iron queue driver (~1.5).",
@@ -943,7 +943,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-04-04 01:34:57"
+            "time": "2015-04-21 01:44:32"
         },
         {
             "name": "league/flysystem",

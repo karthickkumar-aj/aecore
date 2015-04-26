@@ -5,6 +5,8 @@ use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 use Illuminate\Support\Str;
 
+use Hash;
+
 class Registrar implements RegistrarContract {
 
 	/**
@@ -36,7 +38,7 @@ class Registrar implements RegistrarContract {
 			'name' => $data['name'],
 			'email' => $data['email'],
 			'username' => $data['username'],
-			'password' => bcrypt($data['password']),
+			'password' => Hash::make($data['password']),
       'status' => 'active',
 		]);
 	}
