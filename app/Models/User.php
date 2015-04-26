@@ -22,7 +22,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['name', 'email', 'username', 'password', 'usercode', 'title', 'status', 'signup_step', 'company_id', 'company_user_access', 'company_user_status'];
+	protected $fillable = ['usercode', 'name', 'email', 'username', 'password', 'title', 'timezone', 'status', 'signup_step', 'company_id', 'company_user_access', 'company_user_status'];
   // usercode = random string (10) unique identifier used throughout the site to prevent single digit user id entries.
   
 	/**
@@ -32,6 +32,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+  // Relations
+  public function userphone() {
+    return $this->hasOne('App\Models\Userphone');
+  }
+  
+  // User functions
   public function getGravatarAttribute() {    
     // Defaulting to gravatar until storage is finalized
     $hash = md5(strtolower(trim($this->attributes['email'])));

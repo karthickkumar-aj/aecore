@@ -78,7 +78,7 @@
           </div>
           {!! Form::close() !!}
 
-          {!! Form::open(array('url' => 'settings/profile', 'method' => 'post', 'class' => 'form-horizontal')) !!}
+          {!! Form::open(array('url' => 'settings/profile/update', 'method' => 'post', 'class' => 'form-horizontal')) !!}
           <div class="form-group">
             {!! Form::label('name', 'Full Name', array('class' => 'col-md-3 col-lg-2 control-label')) !!}
             <div class="col-md-9 col-lg-8">
@@ -98,7 +98,7 @@
           <div class="form-group">
             {!! Form::label('title', 'Title', array('class' => 'col-md-3 col-lg-2 control-label')) !!}
             <div class="col-md-9 col-lg-8">
-              {!! Form::text('title', Auth::user()->title, array('class' => 'form-control', 'placeholder' => 'Title' )) !!}
+              {!! Form::text('title', @Auth::user()->title, array('class' => 'form-control', 'placeholder' => 'Title' )) !!}
               <span class="text-danger">{!! $errors->first('title') !!}</span>
             </div>
           </div>

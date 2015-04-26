@@ -265,6 +265,16 @@ label {
     margin:0 0 0 251px;
   }
 }
+.task-project-filter {
+  display:none;
+}
+.task-hint {
+  margin:2px 0 0 0;
+  display:none;
+  font-size:0.8em;
+  color:#888;
+}
+
 .taskline {
   height:34px;
   padding:0 15px;
@@ -299,7 +309,17 @@ label {
   cursor:pointer;
   float:left;
 }
-
+.task-priority-tag {
+  width:16px;
+  height:16px;
+  padding:0;
+  margin:9px 0;
+  border-radius:2px;
+  float:left;
+}
+.task-btn-group {
+  float:left;
+}
 .btn-3 {
   color: #fff;
   background-color: #f06658;

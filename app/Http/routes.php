@@ -26,17 +26,12 @@ Route::controllers([
 |--------------------------------------------------------------------------
 */
 
+/* Projects */
 Route::get('projects', 'ProjectsController@index');
 
+/* Tasks */
+Route::resource('tasks', 'TasksController@index');
 
-
-/* TEMPORARY ROUTES FOR UI VIEW DESIGN */
-Route::get('tasks', function(){
-  return view('tasks.list');
-});
-Route::get('settings/profile', function(){
-  return view('settings.personal.profile');
-});
-Route::get('settings/account', function(){
-  return view('settings.personal.account');
-});
+/* Settings */
+Route::get('settings/{view}', 'SettingsController@show');
+Route::post('settings/profile/update', 'SettingsController@updateProfile');
