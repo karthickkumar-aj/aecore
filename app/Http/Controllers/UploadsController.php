@@ -158,7 +158,7 @@ class UploadsController extends Controller {
         $img->resize(600, null, function ($constraint) {
           $constraint->aspectRatio();
         });
-        $img->save(public_path('/uploads/' . $file_name_new));
+        $img->save(public_path('uploads/' . $file_name_new));
       }
     }
   }
@@ -174,9 +174,9 @@ class UploadsController extends Controller {
     // Make image
     $img_size = array('lg' => 250, 'sm' => 50);
     if($type == 'profile') {
-      $img = Image::make(public_path('/uploads/' . Auth::User()->id . '-profile-avatar-original.jpg'));
+      $img = Image::make(public_path('uploads/' . Auth::User()->id . '-profile-avatar-original.jpg'));
     } elseif($type == 'company') {
-      $img = Image::make(public_path('/uploads/' . Auth::User()->company['id'] . '-company-avatar-original.jpg'));
+      $img = Image::make(public_path('uploads/' . Auth::User()->company['id'] . '-company-avatar-original.jpg'));
     }
     $img->crop($w, $h, $x, $y);
         
@@ -187,7 +187,7 @@ class UploadsController extends Controller {
       $img->resize($size, null, function ($constraint) {
         $constraint->aspectRatio();
       });
-      $img->save(public_path('/uploads/' . $file_name));
+      $img->save(public_path('uploads/' . $file_name));
       $file_size = $img->filesize();
       
       $s3bucket = 'aecore-cdn';
@@ -206,7 +206,7 @@ class UploadsController extends Controller {
         'Bucket'              => $s3bucket,
         'ContentDisposition'  => 'attachment',
         'Key'                 => $s3path . '/' . $file_name,
-        'SourceFile'          => public_path('/uploads/' . $file_name),
+        'SourceFile'          => public_path('uploads/' . $file_name),
       ));
       
       // Save image info in the database
@@ -234,15 +234,15 @@ class UploadsController extends Controller {
       }
       
       //Remove resized image
-      File::delete(public_path('/uploads/' . $file_name));
+      File::delete(public_path('uploads/' . $file_name));
     }
     
     // Delete original file
     if($type == 'profile') {
-      File::delete(public_path('/uploads/' . Auth::User()->id . '-profile-avatar-original.jpg'));
+      File::delete(public_path('uploads/' . Auth::User()->id . '-profile-avatar-original.jpg'));
     } elseif($type == 'company') {
-      File::delete(public_path('/uploads/' . Auth::User()->company['id'] . '-company-avatar-original.jpg'));
-    } 
+      File::delete(public_path('uploads/' . Auth::User()->company['id'] . '-company-avatar-original.jpg'));
+    }
     
     // Return to profile page
     return Redirect::to('settings/'.$type)
