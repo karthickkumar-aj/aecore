@@ -47,6 +47,12 @@ class SettingsController extends Controller {
       ->with('UpdateSuccess', '<strong>Success!</strong> Your profile information has been updated.');
 	}
   
+  public function showAvatarCropModal($type) {
+    // Return to the modal view
+    return view('settings.modals.crop')
+            ->with('type', $type);
+  }
+  
   // Change user password
 	public function changePassword(ChangePasswordRequest $request)
 	{

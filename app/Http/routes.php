@@ -40,4 +40,7 @@ Route::group(['middleware'=>'userstatus'], function(){
   Route::post('settings/profile/update', 'SettingsController@updateProfile');
   Route::post('settings/account/change-password', array('uses' => 'SettingsController@changePassword'));
   Route::post('settings/account/delete', array('uses' => 'SettingsController@deleteAccount'));
+  Route::post('settings/avatar/upload/{type}', array('uses' => 'UploadsController@uploadAvatar'));
+  Route::get('settings/avatar/crop/{type}', array('uses' => 'SettingsController@showAvatarCropModal'));
+  Route::post('settings/avatar/crop/{type}', array('uses' => 'UploadsController@cropAvatar'));  
 });

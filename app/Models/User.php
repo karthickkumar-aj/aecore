@@ -6,6 +6,10 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
+use Auth;
+use AWS;
+use DB;
+
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
 	use Authenticatable, CanResetPassword;
@@ -36,12 +40,28 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   public function userphone() {
     return $this->hasOne('App\Models\Userphone');
   }
+  public function useravatar() {
+    return $this->hasOne('App\Models\Useravatar');
+  }
+  public function s3file() {
+    return $this->hasMany('App\Models\S3file');
+  }
   
   // User functions  
-  public function getGravatarAttribute() {    
-    // Defaulting to gravatar until storage is finalized
-    $hash = md5(strtolower(trim($this->attributes['email'])));
-    return 'http://www.gravatar.com/avatar/' . $hash . '?d=identicon';
+  public function getGravatarAttribute() {
+    $image = DB::table('useravatars')
+            ->leftjoin('s3files', 'useravatars.file_id_lg', '=', 's3files.id')
+            ->where('useravatars.user_id', '=', Auth::user()->id)
+            ->first();
+    
+    if(count($image) > 0) {
+      $s3 = AWS::get('s3');
+      return $s3->getObjectUrl($image->file_bucket, $image->file_path . '/' . $image->file_name);
+    } else {
+      // Defaulting to gravatar
+      $hash = md5(strtolower(trim($this->attributes['email'])));
+      return 'http://www.gravatar.com/avatar/' . $hash . '?d=identicon';
+    }
   }
   
 }

@@ -22,7 +22,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">Profile</div>
         <div class="panel-body">
-          {!! Form::open(array('url' => '/settings/avatar/upload/profile', 'method' => 'post', 'class' => 'form-horizontal', 'files' => true)) !!}
+          {!! Form::open(array('url' => '/settings/avatar/upload/profile', 'method' => 'post', 'class' => 'form-horizontal', 'files' => true)) !!}          
           <div class="form-group">
             {!! Form::label('name', 'Avatar', array('class' => 'col-md-3 col-lg-2 control-label')) !!}
             <div class="col-md-9 col-lg-8">
@@ -41,7 +41,7 @@
                       'fileType': 'image/*',
                       'formData': {
                         'timestamp': '<?php echo $timestamp; ?>',
-                        'token': '<?php echo md5('unique_salt' . $timestamp); ?>'
+                        '_token': '<?php echo csrf_token(); ?>'
                       },
                       'queueID': 'queue',
                       'uploadScript': '/settings/avatar/upload/profile',
@@ -79,7 +79,6 @@
           {!! Form::close() !!}
 
           {!! Form::open(array('url' => 'settings/profile/update', 'method' => 'post', 'class' => 'form-horizontal')) !!}
-          <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="form-group">
             {!! Form::label('name', 'Full Name', array('class' => 'col-md-3 col-lg-2 control-label')) !!}
             <div class="col-md-9 col-lg-8">
