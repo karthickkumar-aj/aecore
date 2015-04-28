@@ -23,10 +23,15 @@
   </div>
 
   <div class="modal-body">
+    <?php 
+      $image = Image::make(base_path().'/tmp/' . Auth::User()->id . '-' . $type . '-avatar-original.jpg');
+      return $image->response();
+    ?>
+      
     @if($type == 'profile')
-      {!! Html::image('uploads/' . Auth::User()->id . '-' . $type . '-avatar-original.jpg', '', array('id'=>'jcrop_target', 'style'=>'width:100%;')); !!}
+      
     @elseif($type == 'company')
-      {!! Html::image('uploads/' . Auth::User()->company['id'] . '-' . $type . '-avatar-original.jpg', '', array('id'=>'jcrop_target', 'style'=>'width:100%;')); !!}
+      {!! Html::image('/tmp/' . Auth::User()->company['id'] . '-' . $type . '-avatar-original.jpg', '', array('id'=>'jcrop_target', 'style'=>'width:100%;')); !!}
     @endif
     <input type="hidden" id="x" name="x" value="" required />
     <input type="hidden" id="y" name="y" value="" required />
