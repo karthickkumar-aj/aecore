@@ -28,8 +28,10 @@
             <div class="col-md-9 col-lg-8">
               <img src="{!! Auth::user()->gravatar !!}" class="avatar_lg" title="{!! Auth::user()->name !!}" />
               <div class="avatar_upload">
+                <a class="btn btn-info" href="https://secure.gravatar.com/emails/" target="_blank">Update Gravatar</a>
+                <!--
                 <script type="text/javascript">
-                <?php $timestamp = time(); ?>
+                <?php //$timestamp = time(); ?>
                   $(function () {
                     $('#avatar').uploadifive({
                       'buttonText': 'Select File',
@@ -40,8 +42,8 @@
                       'buttonCursor': 'pointer',
                       'fileType': 'image/*',
                       'formData': {
-                        'timestamp': '<?php echo $timestamp; ?>',
-                        '_token': '<?php echo csrf_token(); ?>'
+                        'timestamp': '<?php //echo $timestamp; ?>',
+                        '_token': '<?php //echo csrf_token(); ?>'
                       },
                       'queueID': 'queue',
                       'uploadScript': '/settings/avatar/upload/profile',
@@ -73,6 +75,7 @@
                 {!! Form::file("file", ["id" => "avatar"]) !!}
                 <div id="queue" class="queue"><span class="text-muted small">Or drag & drop image here.</span></div>
                 <div id="file_id_list"></div>
+                -->
               </div>
             </div>
           </div>

@@ -41,12 +41,7 @@ class UploadsController extends Controller {
         $s3path = Auth::User()->id . '/' . time();
         
         // Instantiate the S3 client with your AWS credentials
-        $s3Client = S3Client::factory(array(
-          'credentials' => array(
-            'key'    => 'AWS_ACCESS_KEY_ID',
-            'secret' => 'AWS_SECRET_ACCESS_KEY',
-          )
-        ));
+        $s3 = AWS::get('s3');
   
         // Upload the images to s3
         $s3Client->putObject(array(
@@ -95,12 +90,7 @@ class UploadsController extends Controller {
         $s3path = 'logos/'.Auth::User()->company_id;
 
         // Instantiate the S3 client with your AWS credentials
-        $s3Client = S3Client::factory(array(
-            'credentials' => array(
-                'key'    => '',
-                'secret' => '',
-            )
-        ));
+        $s3 = AWS::get('s3');
   
         // Upload the images to s3
         $s3Client->putObject(array(
@@ -158,7 +148,7 @@ class UploadsController extends Controller {
         $img->resize(600, null, function ($constraint) {
           $constraint->aspectRatio();
         });
-        $img->save(base_path().'/tmp/' . $file_name_new);
+        $img->save('uploads/' . $file_name_new);
       }
     }
   }
@@ -174,9 +164,9 @@ class UploadsController extends Controller {
     // Make image
     $img_size = array('lg' => 250, 'sm' => 50);
     if($type == 'profile') {
-      $img = Image::make(public_path().'/uploads/' . Auth::User()->id . '-profile-avatar-original.jpg');
+      $img = Image::make('uploads/' . Auth::User()->id . '-profile-avatar-original.jpg');
     } elseif($type == 'company') {
-      $img = Image::make(public_path().'/uploads/' . Auth::User()->company['id'] . '-company-avatar-original.jpg');
+      $img = Image::make('uploads/' . Auth::User()->company['id'] . '-company-avatar-original.jpg');
     }
     $img->crop($w, $h, $x, $y);
         
@@ -187,7 +177,7 @@ class UploadsController extends Controller {
       $img->resize($size, null, function ($constraint) {
         $constraint->aspectRatio();
       });
-      $img->save(public_path().'/uploads/' . $file_name);
+      $img->save('uploads/' . $file_name);
       $file_size = $img->filesize();
       
       $s3bucket = 'aecore-cdn';
@@ -199,14 +189,13 @@ class UploadsController extends Controller {
       
       // Instantiate the S3 client with your AWS credentials
       $s3 = AWS::get('s3');
-  
       // Upload the images to s3
       $s3->putObject(array(
         'ACL'                 => 'public-read',
         'Bucket'              => $s3bucket,
         'ContentDisposition'  => 'attachment',
         'Key'                 => $s3path . '/' . $file_name,
-        'SourceFile'          => public_path().'/uploads/' . $file_name,
+        'SourceFile'          => 'uploads/' . $file_name,
       ));
       
       // Save image info in the database
@@ -234,15 +223,15 @@ class UploadsController extends Controller {
       }
       
       //Remove resized image
-      File::delete(public_path().'/uploads/' . $file_name);
+      File::delete('uploads/' . $file_name);
     }
     
     // Delete original file
     if($type == 'profile') {
-      File::delete(public_path().'/uploads/' . Auth::User()->id . '-profile-avatar-original.jpg');
+      File::delete('uploads/' . Auth::User()->id . '-profile-avatar-original.jpg');
     } elseif($type == 'company') {
-      File::delete(public_path().'/uploads/' . Auth::User()->company['id'] . '-company-avatar-original.jpg');
-    }
+      File::delete('uploads/' . Auth::User()->company['id'] . '-company-avatar-original.jpg');
+    } 
     
     // Return to profile page
     return Redirect::to('settings/'.$type)
