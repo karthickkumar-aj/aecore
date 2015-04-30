@@ -35,6 +35,9 @@ class RedirectIfAuthenticated {
 	{
 		if ($this->auth->check())
 		{
+      Session::put('company_id', Auth::user()->company['company_id']);
+      Session::put('company_user_access', Auth::user()->company['company_user_access']);
+      
 			return new RedirectResponse(url('/projects'));
 		}    
 		return $next($request);

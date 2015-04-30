@@ -2,8 +2,14 @@
 @section('content')
 
 @if(!Session::has('company_id'))
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <script type="text/javascript">
     $(document).ready( function() {
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
       var NoResultsLabel = "No Results - Add a New Company";
       $('#term').autocomplete({
         source: function(request, response) {    
@@ -44,15 +50,12 @@
         select: function(event, ui) {
           if (ui.item.label === NoResultsLabel) {
             $.ajax({
-              url: "/settings/account/company/createform",
+              url: "/settings/company/create",
               type: "get",
               success: function(view) {
                 $('#create_company_wrapper').html(view);
               }
             });
-            
-            //Insert country & state
-            //print_country("company_country_new", "company_state_new", "United States", "");  
           } else {
             $("#company_id").val(ui.item.value);
             $("#join_company_form").submit();
@@ -135,27 +138,23 @@
 
       <div class="panel panel-default">
       <div class="panel-heading">Company</div>
-      <div class="panel-body">            
+      <div class="panel-body">
         @if(Session::has('company_id'))
           <div class="form-horizontal">
             <div class="form-group">
               {!! Form::label('term', 'My Company', array('class' => 'col-md-3 col-lg-2 control-label')) !!}
               <div class="col-md-9 col-lg-8">
                 <p class="form-control-static">
-                  <strong>{!! Session::get('company_name'); !!}</strong><br>
-                  @if($companydata->street != null)
-                    {!! $companydata->street !!}<br>
-                  @endif
-                  @if($companydata->city != "")
-                    {!! $companydata->city . ', ' . $companydata->state . ' ' . $companydata->zipcode !!}<br>
-                  @endif
-                  @if($companydata->url != "")
-                    {!! link_to('//'.$companydata->url, $companydata->url, array('class' => '', 'target'=>'_blank')) !!}
+                  <strong>{!! @Auth::User()->Company->name !!}</strong><br>
+                  {!! @Auth::User()->Company->Companylocation->street . '<br>' !!}
+                  {!! @Auth::User()->Company->Companylocation->city . ', ' . @Auth::User()->Company->Companylocation->state . ' ' . @Auth::User()->Company->Companylocation->zipcode !!}<br>
+                  @if(Auth::User()->Company->Companylocation->website != "")
+                    {!! link_to('//'.Auth::User()->Company->Companylocation->website, Auth::User()->Company->Companylocation->website, array('class' => '', 'target'=>'_blank')) !!}
                   @endif
                 </p>
               </div>
             </div>
-            {!! Form::open(array('url' => 'settings/account/company/leave', 'method' => 'post')) !!}
+            {!! Form::open(array('url' => 'settings/company/leave', 'method' => 'post')) !!}
               <div class="form-group">
                 {!! Form::label('leave', 'Leave Company', array('class' => 'col-md-3 col-lg-2 control-label')) !!}
                 <div class="col-md-9 col-lg-8">
@@ -186,7 +185,7 @@
                 </div>
               </div>
             </div>
-            {!! Form::open(array('id'=>'join_company_form', 'class'=>'no-margin', 'url' => 'settings/account/company/join', 'method' => 'post')) !!}
+            {!! Form::open(array('id'=>'join_company_form', 'class'=>'no-margin', 'url' => 'settings/company/join', 'method' => 'post')) !!}
             {!! Form::hidden('company_id', null, array('id'=>'company_id')) !!}
             {!! Form::close() !!}
           </div>

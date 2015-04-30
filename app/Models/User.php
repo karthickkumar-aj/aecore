@@ -46,15 +46,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
   public function s3file() {
     return $this->hasMany('App\Models\S3file');
   }
+  public function company() {
+    return $this->belongsTo('App\Models\Company');
+  }
   
   // User functions  
   public function getGravatarAttribute() {
-    $image = DB::table('useravatars')
+    // Grab user avatar
+    $image = Useravatar::where('useravatars.user_id', '=', Auth::user()->id)
             ->leftjoin('s3files', 'useravatars.file_id_lg', '=', 's3files.id')
-            ->where('useravatars.user_id', '=', Auth::user()->id)
-            ->first();
-    
-    if(count($image) > 0) {
+            ->count();    
+    if($image > 0) {
       $s3 = AWS::get('s3');
       return $s3->getObjectUrl($image->file_bucket, $image->file_path . '/' . $image->file_name);
     } else {

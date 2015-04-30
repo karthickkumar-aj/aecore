@@ -3,14 +3,26 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-use App\Http\Requests\UpdateSettingsProfileRequest;
-use App\Http\Requests\ChangePasswordRequest;
-use App\Http\Requests\DeleteAccountRequest;
-use App\Models\Userphone;
 use Auth;
 use Hash;
 use Redirect;
+use Session;
+
+// Requests
+use App\Http\Requests\UpdateSettingsProfileRequest;
+use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\DeleteAccountRequest;
+use App\Http\Requests\CreateCompanyRequest;
+use App\Http\Requests\JoinCompanyRequest;
+use App\Http\Requests\LeaveCompanyRequest;
+
+// Models
+use App\Models\User;
+use App\Models\Userphone;
+use App\Models\Company;
+use App\Models\Companylocation;
 
 class SettingsController extends Controller {
 
@@ -31,27 +43,21 @@ class SettingsController extends Controller {
 	{
     // Proceed with update
     Auth::User()->update([
-        'name' => $request->get('name'),
-        'username' => $request->get('username'),
-        'title' => $request->get('title'),
-        'timezone' => $request->get('timezone')
+      'name'        => $request->get('name'),
+      'username'    => $request->get('username'),
+      'title'       => $request->get('title'),
+      'timezone'    => $request->get('timezone'),
     ]);
     
     Userphone::updateOrCreate(['user_id' => Auth::User()->id], [
-      'user_id' => Auth::User()->id, //pkey
-      'direct' => $request->get('direct'),
-      'mobile' => $request->get('mobile')
+      'user_id'     => Auth::User()->id, //pkey
+      'direct'      => $request->get('direct'),
+      'mobile'      => $request->get('mobile')
     ]);
     
     return Redirect::to('settings/profile')
       ->with('UpdateSuccess', '<strong>Success!</strong> Your profile information has been updated.');
 	}
-  
-  public function showAvatarCropModal($type) {
-    // Return to the modal view
-    return view('settings.modals.crop')
-            ->with('type', $type);
-  }
   
   // Change user password
 	public function changePassword(ChangePasswordRequest $request)
@@ -80,7 +86,78 @@ class SettingsController extends Controller {
 	{
     Auth::user()->update(['status' => 'disabled']);
     return Redirect::to('auth/logout');
-	}  
-
+	}
   
+  public function createCompany(CreateCompanyRequest $request) {
+        
+    $company = Company::create([
+      'companycode'  => Str::random(10),
+      'name'        => $request->get('name'),
+      'type'        => $request->get('type'),
+      'labor'       => $request->get('labor')
+    ]);
+    
+    Companylocation::create([
+      'company_id'  => $company->id,
+      'street'      => $request->get('street'),
+      'city'        => $request->get('city'),
+      'country'     => $request->get('country'),
+      'state'       => $request->get('state'),
+      'zipcode'     => $request->get('zipcode'),
+      'phone'       => $request->get('phone'),
+      'fax'         => $request->get('fax'),
+      'website'     => $request->get('website')
+    ]);
+    
+    Auth::User()->update([
+      'company_id' => $company->id,
+      'company_user_access' => 'admin',
+      'company_user_status' => 'active'
+    ]);
+    
+    Session::put('company_id', $company->id);
+    Session::put('company_user_access', 'admin');
+    
+    return Redirect::to('settings/account')
+            ->with('UpdateSuccess', '<strong>Success!</strong> Your company has been added!');
+  }
+  
+  public function joinCompany(JoinCompanyRequest $request) {
+    
+    //Check for admin user
+    $count = User::where('users.company_id', '=', $request->get('company_id'))
+            ->where('users.company_user_status', '=', 'active')
+            ->where('users.company_user_access', '=', 'admin')
+            ->count();
+    
+    // Set user access type
+    $user_access = $count > 0 ? 'standard' : 'admin';
+    
+    Auth::User()->update([
+      'company_id' => $request->get('company_id'),
+      'company_user_access' => $user_access,
+      'company_user_status' => 'active'
+    ]);
+    
+    Session::put('company_id', Auth::User()->company_id);
+    Session::put('company_user_access', $user_access);
+    
+    return Redirect::to('settings/account')
+            ->with('UpdateSuccess', '<strong>Success!</strong> You have been added to ' . Auth::User()->company->name . '!');
+  }
+  
+  public function leaveCompany(LeaveCompanyRequest $request) {
+            
+    Auth::User()->update([
+      'company_user_access' => 'standard',
+      'company_user_status' => 'disabled'
+    ]);
+    
+    Session::forget('company_id');
+    Session::forget('company_user_access');
+    
+    return Redirect::to('settings/account')
+            ->with('UpdateSuccess', '<strong>Success!</strong> You have been removed from your previous company!');
+  }
+ 
 }

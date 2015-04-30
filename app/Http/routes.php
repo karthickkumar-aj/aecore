@@ -28,7 +28,7 @@ Route::controllers([
 */
 
 Route::group(['middleware'=>'userstatus'], function(){
-  
+    
   /* Projects */
   Route::get('projects', 'ProjectsController@index');
 
@@ -41,6 +41,20 @@ Route::group(['middleware'=>'userstatus'], function(){
   Route::post('settings/account/change-password', array('uses' => 'SettingsController@changePassword'));
   Route::post('settings/account/delete', array('uses' => 'SettingsController@deleteAccount'));
   Route::post('settings/avatar/upload/{type}', array('uses' => 'UploadsController@uploadAvatar'));
-  Route::get('settings/avatar/crop/{type}', array('uses' => 'SettingsController@showAvatarCropModal'));
-  Route::post('settings/avatar/crop/{type}', array('uses' => 'UploadsController@cropAvatar'));  
+  Route::get('settings/avatar/crop/{type}', function() {
+    return view('settings.modals.crop')->with('type', $type);
+  });
+  Route::post('settings/avatar/crop/{type}', array('uses' => 'UploadsController@cropAvatar'));
+  
+  /* Settings - Company */
+  Route::get('settings/company/create', function() {
+    return view('settings.companies.create');
+  });
+  Route::post('settings/company/create', 'SettingsController@createCompany');
+  Route::post('settings/company/join', 'SettingsController@joinCompany');
+  Route::post('settings/company/leave', 'SettingsController@leaveCompany');
+  
+  /* Autocomplete */
+  Route::post('autocomplete/companies', 'AutocompleteController@findCompanies');
+  
 });

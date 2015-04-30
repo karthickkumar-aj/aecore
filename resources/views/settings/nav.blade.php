@@ -7,7 +7,7 @@
   </div>
 </div>
 
-@if(Session::has('company_id') && Session::get('company_join_type') == 'admin')
+@if(Auth::user()->company_user_access == 'admin' && Auth::user()->company_user_status == 'active')
   <div class="panel panel-default">
     <div class="panel-heading">Company Settings</div>
     <div class="list-group">
