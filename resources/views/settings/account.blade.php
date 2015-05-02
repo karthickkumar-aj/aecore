@@ -75,7 +75,7 @@
     <h1>Settings / Account</h1>
   </div>
 
-  <div class="row profile">
+  <div class="row">
     <div class="col-sm-4 col-md-3">
       @include('settings.nav')
     </div>
@@ -139,7 +139,7 @@
       <div class="panel panel-default">
       <div class="panel-heading">Company</div>
       <div class="panel-body">
-        @if(Session::has('company_id'))
+        @if(Auth::User()->company_user_status == 'active')
           <div class="form-horizontal">
             <div class="form-group">
               {!! Form::label('term', 'My Company', array('class' => 'col-md-3 col-lg-2 control-label')) !!}

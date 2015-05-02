@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 
 use Auth;
 use Hash;
+use Input;
 use Redirect;
 use Session;
 
@@ -15,6 +16,7 @@ use App\Http\Requests\UpdateSettingsProfileRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\DeleteAccountRequest;
 use App\Http\Requests\CreateCompanyRequest;
+use App\Http\Requests\UpdateCompanyRequest;
 use App\Http\Requests\JoinCompanyRequest;
 use App\Http\Requests\LeaveCompanyRequest;
 
@@ -23,6 +25,7 @@ use App\Models\User;
 use App\Models\Userphone;
 use App\Models\Company;
 use App\Models\Companylocation;
+use App\Models\Companylogo;
 
 class SettingsController extends Controller {
 
@@ -119,15 +122,50 @@ class SettingsController extends Controller {
     Session::put('company_user_access', 'admin');
     
     return Redirect::to('settings/account')
-            ->with('UpdateSuccess', '<strong>Success!</strong> Your company has been added!');
+            ->with('UpdateSuccess', '<strong>Success!</strong> Your company has been added.');
   }
   
+  public function updateCompany(UpdateCompanyRequest $request) {
+        
+    Company::where('id', Auth::User()->Company->id)->update([
+      'name'        => $request->get('name'),
+      'type'        => $request->get('type'),
+      'labor'       => $request->get('labor')
+    ]);
+    
+    Companylocation::where('company_id', Auth::User()->Company->id)->update([
+      'street'      => $request->get('street'),
+      'city'        => $request->get('city'),
+      'country'     => $request->get('country'),
+      'state'       => $request->get('state'),
+      'zipcode'     => $request->get('zipcode'),
+      'phone'       => $request->get('phone'),
+      'fax'         => $request->get('fax'),
+      'website'     => $request->get('website')
+    ]);
+    
+    return Redirect::to('http://localhost/settings/company')
+            ->with('UpdateSuccess', '<strong>Success!</strong> Your company information has been updated.');
+  }
+  
+  public function saveLogoCompany() {
+    
+    $file_id = Input::get('file_id');
+    
+    Companylogo::where('company_id', Auth::user()->Company->id)->update([
+        'file_id_logo'  => $file_id
+    ]);
+    
+    return Redirect::to('http://localhost/settings/company')
+            ->with('UpdateSuccess', '<strong>Success!</strong> Your company logo has been changed.');
+  }
+   
   public function joinCompany(JoinCompanyRequest $request) {
     
     //Check for admin user
-    $count = User::where('users.company_id', '=', $request->get('company_id'))
-            ->where('users.company_user_status', '=', 'active')
-            ->where('users.company_user_access', '=', 'admin')
+    $count = User::where('company_id', '=', $request->get('company_id'))
+            ->where('company_user_status', '=', 'active')
+            ->where('company_user_access', '=', 'admin')
             ->count();
     
     // Set user access type
@@ -138,9 +176,6 @@ class SettingsController extends Controller {
       'company_user_access' => $user_access,
       'company_user_status' => 'active'
     ]);
-    
-    Session::put('company_id', Auth::User()->company_id);
-    Session::put('company_user_access', $user_access);
     
     return Redirect::to('settings/account')
             ->with('UpdateSuccess', '<strong>Success!</strong> You have been added to ' . Auth::User()->company->name . '!');
@@ -157,7 +192,7 @@ class SettingsController extends Controller {
     Session::forget('company_user_access');
     
     return Redirect::to('settings/account')
-            ->with('UpdateSuccess', '<strong>Success!</strong> You have been removed from your previous company!');
+            ->with('UpdateSuccess', '<strong>Success!</strong> You have been removed from your previous company.');
   }
  
 }

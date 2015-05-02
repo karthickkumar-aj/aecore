@@ -37,14 +37,14 @@ class UploadsController extends Controller {
       $allowed = array("jpg","JPG","png","PNG","jpeg","JPEG","gif","GIF","pdf","PDF","doc","DOC","docx","DOCX","xls","XLS","xlsx","XLSX","ppt","PPT","pptx","PPTX","txt","TXT","dwg","DWG","dxf","DXF","zip","ZIP");
                
       if(in_array($ext, $allowed)) {
-        $s3bucket = 'aecore-cdn';
+        $s3bucket = 'asm-aecore';
         $s3path = Auth::User()->id . '/' . time();
         
         // Instantiate the S3 client with your AWS credentials
         $s3 = AWS::get('s3');
   
         // Upload the images to s3
-        $s3Client->putObject(array(
+        $s3->putObject(array(
           'ACL'                 => 'public-read',
           'Bucket'              => $s3bucket,
           'ContentDisposition'  => 'attachment',
@@ -66,53 +66,47 @@ class UploadsController extends Controller {
   }
 
   // Company logos
-  public function uploadLogo() {
-    
-    $verifyToken = md5('unique_salt' . Input::get('timestamp'));
-    
-    if(Input::hasFile('Filedata') && Input::get('token') == $verifyToken) {
+  public function uploadLogoCompany() {
+        
+    if(Input::hasFile('Filedata')) {
       
       require_once __DIR__ . '/../../../vendor/autoload.php';
       
       // Get file size & temp location
       $file_location_temp = Input::file('Filedata')->getRealPath();
       $file_size = Input::file('Filedata')->getSize();
-
+      
       // Remove spaces from file name
       $file_name_upload = str_replace(str_split(':*?&"<>|'), '', Input::file('Filedata')->getClientOriginalName());
       $file_name = str_replace(' ', '-', $file_name_upload);
       
       $ext = strtolower(substr($file_name, strrpos($file_name, '.') + 1));
       $allowed = array("jpg","JPG","png","PNG","jpeg","JPEG");
-               
+      
       if(in_array($ext, $allowed)) {
-        $s3bucket = 'aecore-cdn';
+        $s3bucket = 'asm-aecore';
         $s3path = 'logos/'.Auth::User()->company_id;
 
         // Instantiate the S3 client with your AWS credentials
         $s3 = AWS::get('s3');
-  
+        
         // Upload the images to s3
-        $s3Client->putObject(array(
-          'ACL'                 => 'public-read',
+        $s3->putObject(array(
+          //'ACL'                 => 'public-read',
           'Bucket'              => $s3bucket,
-          'ContentDisposition'  => 'attachment',
-          'Key'                 => $s3path . '/' . $file_name,
+          //'ContentDisposition'  => 'attachment',
+          'Key'                 => $file_name,
           'SourceFile'          => $file_location_temp,
         ));
-
+        
         // Save image info in the database
-        $file_data = array (
+        $id = S3file::create([
+          'user_id' => Auth::user()->id,
           'file_bucket' => $s3bucket,
-          'file_path' => $s3path,
+          'file_path' => '',
           'file_name' => $file_name,
           'file_size' => $file_size
-        );
-        $id = Auth::user()->s3file()->create($file_data);
-        
-        DB::table('companyavatars')
-          ->where(['company_id' => Auth::user()->company['id']])
-          ->update(['file_id_logo'=>$id->id]);
+        ]);
         
         return $id->id;
       }
@@ -126,13 +120,12 @@ class UploadsController extends Controller {
             
       // Get file size & temp location
       $file_location_temp = Input::file('Filedata')->getRealPath();
-
+      
       // Remove spaces from file name
       $file_name_upload = str_replace(str_split(':*?&"<>|'), '', Input::file('Filedata')->getClientOriginalName());
       $file_name = str_replace(' ', '-', $file_name_upload);
          
       $ext = strtolower(substr($file_name, strrpos($file_name, '.') + 1));
-      //$allowed = array("jpg", "png", "jpeg", "gif", "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt", "dwg", "dxf", "zip");
       $allowed_img = array("jpg", "JPG", "png", "PNG", "jpeg", "JPEG", "gif", "GIF");
          
       if(in_array($ext, $allowed_img)){
@@ -142,14 +135,13 @@ class UploadsController extends Controller {
         } elseif($type == 'company') {
           $file_name_new = Auth::User()->company['id'] . '-company-avatar-original.jpg';
         }
-        
-        $img = Image::make($file_location_temp);
+           
         // resize the image to a width of 300 and constrain aspect ratio (auto height)
         $img->resize(600, null, function ($constraint) {
           $constraint->aspectRatio();
         });
         $img->save('uploads/' . $file_name_new);
-      }
+      } 
     }
   }
   
@@ -180,7 +172,7 @@ class UploadsController extends Controller {
       $img->save('uploads/' . $file_name);
       $file_size = $img->filesize();
       
-      $s3bucket = 'aecore-cdn';
+      $s3bucket = 'asm-aecore';
       if($type == 'profile') {
         $s3path = 'avatars/' . Auth::User()->id;
       } elseif($type == 'company') {
