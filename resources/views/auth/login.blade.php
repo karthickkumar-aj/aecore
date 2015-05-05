@@ -18,8 +18,7 @@
     
     <h4 class="text-muted">Log in to Aecore</h4>
     {!! Form::open(array('url' => 'auth/login', 'method' => 'post', 'style'=>'margin-bottom:20px')) !!}
-      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+    
       <div class="form-group">
         <span class="text-danger">{!! $errors->first('email') !!}</span>
         {!!Form::text('email', null, array('class'=>'form-control', 'placeholder'=>'Email', 'autofocus' => 'true'))!!}

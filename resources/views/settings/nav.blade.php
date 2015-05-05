@@ -11,9 +11,9 @@
   <div class="panel panel-default">
     <div class="panel-heading">Company Settings</div>
     <div class="list-group">
-      <a href="/settings/company" class="list-group-item {!! (Request::is('*company') ? 'selected' : '') !!}"><span class="glyphicon glyphicon-flag small"></span> About {!! Session::get('company_name') !!}</a>
+      <a href="/settings/company/about" class="list-group-item {!! (Request::is('*company/about') ? 'selected' : '') !!}"><span class="glyphicon glyphicon-flag small"></span> About {!! Session::get('company_name') !!}</a>
       <a href="/settings/company/preferences" class="list-group-item {!! (Request::is('*company/preferences') ? 'selected' : '') !!}"><span class="glyphicon glyphicon-tasks small"></span> Preferences</a>
-      <a href="/settings/company/users" class="list-group-item {!! (Request::is('*company/users') ? 'selected' : '') !!}"><span class="glyphicon glyphicon-briefcase small"></span> Employees / Users</a>
+      <a href="/settings/company/users" class="list-group-item {!! (Request::is('*company/users') ? 'selected' : '') !!}"><span class="glyphicon glyphicon-briefcase small"></span> Users</a>
     </div>
   </div>
 @endif

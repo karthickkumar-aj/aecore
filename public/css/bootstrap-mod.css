@@ -248,6 +248,17 @@ label {
   color:#dc4c4c;
 }
 
+/* User Lists */
+.user-list {
+  padding:10px;
+}
+.user-list:hover {
+  background:#F7F7F7;
+}
+.user-list p {
+  margin:0 0 0 48px;
+}
+
 /* Task List */
 .task-list-wrapper {
   margin:0;

@@ -35,11 +35,25 @@ Route::group(['middleware'=>'userstatus'], function(){
   /* Tasks */
   Route::resource('tasks', 'TasksController@index');
 
-  /* Settings */
+  /* Company Settings */
+  Route::group(['middleware'=>'admincheck'], function(){
+    Route::get('settings/company/users', 'SettingsController@showUsers');
+    Route::get('settings/company/{view}', 'SettingsController@show');
+    Route::post('settings/company/update', 'SettingsController@updateCompany');
+    Route::post('settings/company/uploadlogo', 'UploadsController@uploadLogoCompany');
+    Route::post('settings/company/savelogo', 'SettingsController@saveLogoCompany');
+    Route::get('settings/company/remove/{usercode}', 'SettingsController@removeUserModal');
+    Route::post('settings/company/remove', 'SettingsController@removeUser');
+    Route::get('settings/company/admin/{usercode}', 'SettingsController@makeUserAdmin');
+  });
+  Route::get('settings/company/create', function() {
+    return view('settings.companies.create');
+  });
+  Route::post('settings/company/create', 'SettingsController@createCompany');
+  
+  /* Personal Settings */
   Route::get('settings/{view}', 'SettingsController@show');
   Route::post('settings/avatar/upload/{type}', array('uses' => 'UploadsController@uploadAvatar'));
-  
-  /* Settings - Personal */
   Route::post('settings/profile/update', 'SettingsController@updateProfile');
   Route::post('settings/account/change-password', array('uses' => 'SettingsController@changePassword'));
   Route::post('settings/account/delete', array('uses' => 'SettingsController@deleteAccount'));
@@ -47,18 +61,9 @@ Route::group(['middleware'=>'userstatus'], function(){
     return view('settings.modals.crop')->with('type', $type);
   });
   Route::post('settings/avatar/crop/{type}', array('uses' => 'UploadsController@cropAvatar'));
-  
-  /* Settings - Company */
-  Route::get('settings/company/create', function() {
-    return view('settings.companies.create');
-  });
-  Route::post('settings/company/create', 'SettingsController@createCompany');
-  Route::post('settings/company/update', 'SettingsController@updateCompany');
   Route::post('settings/company/join', 'SettingsController@joinCompany');
   Route::post('settings/company/leave', 'SettingsController@leaveCompany');
-  Route::post('settings/company/uploadlogo', 'UploadsController@uploadLogoCompany');
-  Route::post('settings/company/savelogo', 'SettingsController@saveLogoCompany');
-  
+    
   /* Autocomplete */
   Route::post('autocomplete/companies', 'AutocompleteController@findCompanies');
   

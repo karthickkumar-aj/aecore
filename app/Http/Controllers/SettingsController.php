@@ -19,6 +19,7 @@ use App\Http\Requests\CreateCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 use App\Http\Requests\JoinCompanyRequest;
 use App\Http\Requests\LeaveCompanyRequest;
+use App\Http\Requests\RemoveUserRequest;
 
 // Models
 use App\Models\User;
@@ -144,7 +145,7 @@ class SettingsController extends Controller {
       'website'     => $request->get('website')
     ]);
     
-    return Redirect::to('http://localhost/settings/company')
+    return Redirect::to('settings/company/about')
             ->with('UpdateSuccess', '<strong>Success!</strong> Your company information has been updated.');
   }
   
@@ -156,7 +157,7 @@ class SettingsController extends Controller {
         'file_id_logo'  => $file_id
     ]);
     
-    return Redirect::to('http://localhost/settings/company')
+    return Redirect::to('settings/company/about')
             ->with('UpdateSuccess', '<strong>Success!</strong> Your company logo has been changed.');
   }
    
@@ -177,8 +178,8 @@ class SettingsController extends Controller {
       'company_user_status' => 'active'
     ]);
     
-    return Redirect::to('settings/account')
-            ->with('UpdateSuccess', '<strong>Success!</strong> You have been added to ' . Auth::User()->company->name . '!');
+    return Redirect::to('settings/company/account')
+            ->with('UpdateSuccess', '<strong>Success!</strong> You have been added to ' . Auth::User()->company->name . '.');
   }
   
   public function leaveCompany(LeaveCompanyRequest $request) {
@@ -191,8 +192,47 @@ class SettingsController extends Controller {
     Session::forget('company_id');
     Session::forget('company_user_access');
     
-    return Redirect::to('settings/account')
+    return Redirect::to('settings/company/account')
             ->with('UpdateSuccess', '<strong>Success!</strong> You have been removed from your previous company.');
+  }
+  
+  public function showUsers() {
+            
+    $userlist = User::where('company_id', Auth::User()->company_id)
+            ->where('company_user_status', 'active')
+            ->orderby('name', 'asc')
+            ->get();
+    return view('settings.users')->with('userlist', $userlist);
+  }
+  
+  public function removeUserModal($usercode) {
+    // Return to the modal view
+    $user = User::where('usercode', '=', $usercode)
+              ->first(array('usercode', 'name'));
+    
+    return view('settings.modals.remove_user')
+            ->with('user', $user);
+  }
+  
+  public function removeUser(RemoveUserRequest $request) {
+    
+    User::where('usercode', $request->get('usercode'))->update([
+      'company_user_access' => 'standard',
+      'company_user_status' => 'disabled'
+    ]);
+    
+    return Redirect::to('settings/company/users')
+            ->with('UpdateSuccess', '<strong>Success!</strong> ' . $request->get('name') . ' was removed from your company.');    
+  }
+  
+  public function makeUserAdmin($usercode) {
+    
+    User::where('usercode', $usercode)->update([
+      'company_user_access' => 'admin'
+    ]);
+    
+    return Redirect::to('settings/company/users');
+            
   }
  
 }
