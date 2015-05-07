@@ -32,9 +32,11 @@ Route::group(['middleware'=>'userstatus'], function(){
   /* Projects */
   Route::get('projects', 'ProjectsController@index');
 
+  
   /* Tasks */
   Route::resource('tasks', 'TasksController@index');
 
+  
   /* Company Settings */
   Route::group(['middleware'=>'admincheck'], function(){
     Route::get('settings/company/users', 'SettingsController@showUsers');
@@ -44,12 +46,12 @@ Route::group(['middleware'=>'userstatus'], function(){
     Route::post('settings/company/savelogo', 'SettingsController@saveLogoCompany');
     Route::get('settings/company/remove/{usercode}', 'SettingsController@removeUserModal');
     Route::post('settings/company/remove', 'SettingsController@removeUser');
-    Route::get('settings/company/admin/{usercode}', 'SettingsController@makeUserAdmin');
+    Route::get('settings/company/admin/{usercode}', 'SettingsController@makeUserAdmin'); 
   });
-  Route::get('settings/company/create', function() {
-    return view('settings.companies.create');
+  Route::get('settings/create-company', function() {
+    return view('settings.company.create');
   });
-  Route::post('settings/company/create', 'SettingsController@createCompany');
+  Route::post('settings/create-company', 'SettingsController@createCompany');     
   
   /* Personal Settings */
   Route::get('settings/{view}', 'SettingsController@show');

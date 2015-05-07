@@ -20,6 +20,8 @@ class CreateCompanylogosTable extends Migration {
 			$table->integer('file_id_sq_lg')->nullable();
 			$table->integer('file_id_sq_sm')->nullable();
 			$table->timestamps();
+      $table->dropPrimary('companylogos_pkey');
+      $table->primary('company_id');    
 		});
 	}
 

@@ -92,10 +92,10 @@ class UploadsController extends Controller {
         
         // Upload the images to s3
         $s3->putObject(array(
-          //'ACL'                 => 'public-read',
+          'ACL'                 => 'public-read',
           'Bucket'              => $s3bucket,
-          //'ContentDisposition'  => 'attachment',
-          'Key'                 => $file_name,
+          'ContentDisposition'  => 'attachment',
+          'Key'                 => $s3path . '/' . $file_name,
           'SourceFile'          => $file_location_temp,
         ));
         
@@ -103,7 +103,7 @@ class UploadsController extends Controller {
         $id = S3file::create([
           'user_id' => Auth::user()->id,
           'file_bucket' => $s3bucket,
-          'file_path' => '',
+          'file_path' => $s3path,
           'file_name' => $file_name,
           'file_size' => $file_size
         ]);

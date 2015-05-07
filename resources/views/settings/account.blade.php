@@ -50,7 +50,7 @@
         select: function(event, ui) {
           if (ui.item.label === NoResultsLabel) {
             $.ajax({
-              url: "/settings/company/create",
+              url: "/settings/create-company",
               type: "get",
               success: function(view) {
                 $('#create_company_wrapper').html(view);

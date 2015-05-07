@@ -90,7 +90,7 @@
           <div class="form-group">
             {!! Form::label('logo', 'Logo', array('class' => 'col-md-3 col-lg-2 control-label')) !!}   
             <div class="col-md-9 col-lg-8">
-              <img src="" class="logo_company" />
+              <img src="{!! $logo_url !!}" class="logo_company" />
               <script type="text/javascript">
                 $(function() {
                   $('#logo').uploadifive({

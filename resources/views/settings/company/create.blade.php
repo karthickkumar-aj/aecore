@@ -7,7 +7,7 @@
 </script>
 
 
-{!! Form::open(array('id'=>'add_company_form', 'url' => 'settings/company/create', 'method' => 'post', 'class' => 'form-horizontal')) !!}
+{!! Form::open(array('id'=>'add_company_form', 'url' => 'settings/create-company', 'method' => 'post', 'class' => 'form-horizontal')) !!}
   
   <div class="form-group">
     <div class="col-md-offset-3 col-md-9 col-lg-offset-2 col-lg-8">

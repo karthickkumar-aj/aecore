@@ -28,7 +28,7 @@
     | see: http://docs.aws.amazon.com/general/latest/gr/rande.html
     |
     */
-    'region' => env('AWS_REGION', 'us-east-1'),
+    'region' => env('AWS_REGION', ''),
 
     /*
     |--------------------------------------------------------------------------

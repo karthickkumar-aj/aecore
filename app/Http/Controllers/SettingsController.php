@@ -39,7 +39,15 @@ class SettingsController extends Controller {
   // Show user settings
 	public function show($view)
 	{
-		return view('settings.'.$view);
+    // Company logo
+    $logo_url = "";
+    if($view == 'about') {
+      $companylogo = new Companylogo;
+      $logo_url = $companylogo->getCompanyLogo(Auth::User()->Company->id);
+    }
+    
+		return view('settings.'.$view)
+          ->with('logo_url', $logo_url);
 	}
   
   // Update user settings
@@ -153,12 +161,15 @@ class SettingsController extends Controller {
     
     $file_id = Input::get('file_id');
     
-    Companylogo::where('company_id', Auth::user()->Company->id)->update([
-        'file_id_logo'  => $file_id
-    ]);
-    
+    foreach($file_id as $key => $i) {
+      Companylogo::updateOrCreate(['company_id' => Auth::user()->Company->id], [
+        'company_id'    => Auth::user()->Company->id, //pkey
+        'file_id_logo'  => $file_id[$key]
+      ]);
+    }
+        
     return Redirect::to('settings/company/about')
-            ->with('UpdateSuccess', '<strong>Success!</strong> Your company logo has been changed.');
+            ->with('UpdateSuccess', '<strong>Success!</strong> Your company logo has been updated.');
   }
    
   public function joinCompany(JoinCompanyRequest $request) {
