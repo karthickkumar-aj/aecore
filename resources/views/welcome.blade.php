@@ -40,7 +40,7 @@
 	<body>
 		<div class="container">
 			<div class="content">
-				<div class="title">Laravel 5</div>
+				<div class="title">Aecore :: Web Based Construction Project Management Tool</div>
 				<div class="quote">{{ Inspiring::quote() }}</div>
 			</div>
 		</div>
