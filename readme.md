@@ -2,7 +2,7 @@
 
 <a href="https://assembly.com/aecore/bounties?utm_campaign=assemblage&utm_source=aecore&utm_medium=repo_badge"><img src="https://asm-badger.herokuapp.com/aecore/badges/tasks.svg" height="24px" alt="Open Tasks" /></a>
 
-## Project management for construction.
+## Web Based Project management software for construction.
 
 This is a product being built by the Assembly community. You can help push this idea forward by visiting [https://assembly.com/aecore](https://assembly.com/aecore).
 
