@@ -21,7 +21,7 @@
     
       <div class="form-group">
         <span class="text-danger">{!! $errors->first('email') !!}</span>
-        {!!Form::text('email', null, array('class'=>'form-control', 'placeholder'=>'Email', 'autofocus' => 'true'))!!}
+        {!!Form::text('email', null, array('class'=>'form-control', 'placeholder'=>'Email address', 'autofocus' => 'true'))!!}
       </div>
 
       <div class="form-group">
