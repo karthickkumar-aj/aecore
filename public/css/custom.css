@@ -1,0 +1,45 @@
+/*list style for project table*/
+.projectname {
+	list-style: none;
+}
+.projectname a {
+	list-style: none;
+	padding: 0px;
+	font-size:15px;
+}
+.projectcompany {
+	list-style: none;
+}
+.projectcompany a {
+	list-style: none;
+	padding: 0px;
+	font-size:12px;
+}
+.projectcity {
+	list-style: none;
+}
+.projectcity a {
+	list-style: none;
+	padding: 0px;
+	font-size:12px;
+	color: #333;
+}
+.projectdate {
+	list-style: none;
+}
+.projecttag {
+	list-style: none;
+}
+.filter-heading {
+	padding: 0px;
+	font-size:16px;
+	color: #f6a200;
+}
+.projectcollabrator{
+	list-style: none;
+}
+
+
+
+
+
