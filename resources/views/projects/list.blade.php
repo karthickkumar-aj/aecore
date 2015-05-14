@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('app')
 
 @section('content')
@@ -82,3 +83,11 @@
 	</div>
 </div>
 @endsection
+=======
+@extends('layouts.application.main')
+@section('content')
+
+  Hi, {!! Auth::user()->name !!}, you're logged in!
+
+@endsection
+>>>>>>> 15238754893405526436e074ad9ac1524a8c2a81

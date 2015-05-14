@@ -1,0 +1,446 @@
+/* Body */
+body {
+  padding-top:51px;
+  font-family:Lato, arial, helvetic, sans-serif;
+}
+
+.bold { font-weight:bold; }
+.btn-spacer-left { margin-left:8px; }
+.center {
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+
+/* Nav Bar */
+.navbar-default {
+  border-bottom:1px solid #d5d5d5;
+  -webkit-box-shadow: inset 0 1px 0 rgba(250, 250, 250, 0.15), 0 1px 5px rgba(0, 0, 0, 0.065);
+  box-shadow: inset 0 1px 0 rgba(250, 250, 250, 0.15), 0 1px 5px rgba(0, 0, 0, 0.065);
+  z-index:100;
+}
+.navbar-brand {
+  height:30px;
+  width:102px;
+  margin:10px 15px 0 0;
+  background:url('img/logos/aecore-topbar.svg') 0 0 no-repeat;
+  display:inline-block;
+}
+@media (max-width: 767px) {
+  .navbar-brand {
+    height:30px;
+    width:30px;
+    margin:10px 15px 0 0;
+    background:url('img/logos/aecore-topbar-icon.svg') 0 -30px no-repeat;
+    display:inline-block;
+  }
+}
+
+/* Top Bar Links */
+.navbar-nav > li > a {
+  padding:15px 12px 12px 12px;
+  color:#dc4c4c;
+  border-bottom:3px solid #FFF;
+}
+.navbar-nav > li > a.navbar-link:hover {
+  color:#dc4c4c;
+  border-bottom:3px solid #dc4c4c;
+  transition: border-color 0.2s linear;
+  -moz-transition: border-color 0.2s linear;    /* FF3.7+ */
+  -o-transition: border-color 0.2s linear;      /* Opera 10.5 */
+  -webkit-transition: border-color 0.2s linear; /* Saf3.2+, Chrome */
+}
+.navbar-nav > li > a.navbar-link-active {
+  color:#DA4B4B;
+  border-bottom:3px solid #DA4B4B;
+  font-weight:bold;
+}
+.navbar-nav > li > a.navbar-link-active:hover {
+  color:#DA4B4B;
+  border-bottom:3px solid #DA4B4B;
+  transition: border-color 0.2s linear;
+  -moz-transition: border-color 0.2s linear;    /* FF3.7+ */
+  -o-transition: border-color 0.2s linear;      /* Opera 10.5 */
+  -webkit-transition: border-color 0.2s linear; /* Saf3.2+, Chrome */
+}
+@media (max-width: 767px) {
+  .navbar-nav > li > a.navbar-link {
+    border-bottom:none;
+  }
+  .navbar-nav > li > a.navbar-link:hover {
+    border-bottom:none;
+  }
+  .navbar-nav > li > a.navbar-link-active {
+    border-bottom:3px solid #FFF;
+  }  
+  .navbar-nav > li > a.navbar-link-active:hover {
+    border-bottom:3px solid #FFF;
+  }  
+}
+
+/* Avatars */
+.avatar_upload {
+  margin-left:90px;
+}
+.avatar_xs {
+  width:20px;
+  height:20px;
+  margin:0 5px 0 0;
+  border-radius:2px;
+  float:left;
+}
+.avatar_sm {
+  width:34px;
+  height:34px;
+  margin:0 8px 0 0;
+  border-radius:3px;
+  float:left;
+}
+.avatar_md {
+  width:40px;
+  height:40px;
+  border-radius:3px;
+  float:left;
+}
+.avatar_lg {
+  width:75px;
+  height:75px;
+  border-radius:3px;
+  float:left;
+}
+.avatar_profile {
+  width:120px;
+  height:120px;
+  margin:20px auto;
+  border-radius:60px;
+  display:block;
+}
+.avatar_navbar {
+  width:28px;
+  height:28px;
+  margin:-4px 5px 0 0;
+  border-radius:14px;
+  float:left;
+}
+.avatar_company {
+  width:32px;
+  height:32px;
+  margin-right:5px;
+  float:left;
+}
+.logo_company {
+  max-width:200px;
+  max-height:75px;
+  margin-bottom:15px;
+}
+@media (max-width: 767px) {
+  .avatar_xs {
+    margin:0;
+    float:none;
+  }
+}
+
+/* Page heading */
+.pagehead {
+  padding:15px 0;
+}
+.pagehead h1 {
+  padding:0;
+  margin:0;
+  font-size:20px;
+  font-family: Open Sans, Arial, sans-serif;
+  line-height:30px;
+  color:#666;
+  text-shadow:1px 1px #FFF;
+}
+
+/* Control Labels */
+label {
+  color:#666;
+}
+
+/* List Groups */
+.list-group-topper {
+  padding:15px;
+  border-bottom:1px solid #eee;
+}
+.list-group-item.selected:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  content: "";
+  background-color: #dc4c4c;
+}
+.list-group-item.selected {
+  color:#dc4c4c;
+  font-weight:bold;
+}
+
+/* Sidebar Nav */
+.sidebar-nav {
+  position:absolute;
+  top:50px;
+  bottom:0;
+  left:0;
+  width:250px;
+  margin: 0;
+  padding:10px 0;
+  list-style: none;
+  z-index:50;
+  display:none;
+  border-right:1px solid #c9d1d6;
+}
+.sidebar-nav select.sidebar-project-list {
+  margin-top:-10px;
+  border:none;
+  border-bottom:1px solid #ddd;
+  border-radius:0;
+  outline:none;
+  box-shadow:none;  
+}
+.sidebar-nav li {
+  line-height:20px;
+}
+.sidebar-nav li.nav-header {
+  margin:0 0 0 15px;
+  font-size:12px;
+  line-height:30px;
+  color:#818A91;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  text-shadow:1px 1px #FFF;
+}
+.sidebar-nav li a {
+  padding:6px 10px 6px 12px;
+  display:block;
+  text-decoration:none;
+	color:#3D464D;
+  border-radius:0px;
+  text-shadow:1px 1px #FFF;
+  border-left:3px solid transparent;
+}
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color:#dc4c4c;
+  background:#E5E8EA;
+  border-left:3px solid #dc4c4c;
+}
+.sidebar-nav li a.active {
+  color:#dc4c4c;
+  font-weight:bold;
+  border-left:3px solid #dc4c4c;
+}
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+@media(min-width:768px) {
+  .sidebar-nav {
+    display:block;
+  }
+  .toggle-nav {
+    display:none;
+  }
+}
+.text-hover-danger:hover {
+  color:#dc4c4c;
+}
+
+/* User Lists */
+.user-list {
+  padding:10px;
+}
+.user-list:hover {
+  background:#F7F7F7;
+}
+.user-list p {
+  margin:0 0 0 48px;
+}
+
+/* Task List */
+.task-list-wrapper {
+  margin:0;
+  padding:0;
+  position:absolute;
+  top:50px;
+  right:0;
+  bottom:0;
+  left:0;
+  background:#FFF;
+  overflow-y:auto;
+}
+@media(min-width:768px) {
+  .task-list-wrapper {
+    margin:0 0 0 251px;
+  }
+}
+.task-project-filter {
+  display:none;
+}
+.task-hint {
+  margin:2px 0 0 0;
+  display:none;
+  font-size:0.8em;
+  color:#888;
+}
+
+.taskline {
+  height:34px;
+  padding:0 15px;
+}
+.taskline:hover {
+  background:#F7F7F7;
+}
+.taskline-active {
+  background:#EBF2FB;
+}
+.taskline-active:hover {
+  background:#EBF2FB;
+}
+.taskline-checkbox {
+  width:16px;
+  height:16px;
+  margin:9px 8px 9px 0;
+  background:url('img/sprites/checkbox_sprite.png') 0 0 no-repeat;
+  display:block;
+  cursor:pointer;
+  float:left;
+}
+.taskline-checkbox:active {
+  background:url('img/sprites/checkbox_sprite.png') 0 -16px no-repeat;
+}
+.taskline-checkbox-complete {
+  width:16px;
+  height:16px;
+  margin:9px 8px 9px 0;
+  background:url('img/sprites/checkbox_sprite.png') 0 -32px no-repeat;
+  display:block;
+  cursor:pointer;
+  float:left;
+}
+.task-priority-tag {
+  width:16px;
+  height:16px;
+  padding:0;
+  margin:9px 0;
+  border-radius:2px;
+  float:left;
+}
+.task-btn-group {
+  float:left;
+}
+.btn-3 {
+  color: #fff;
+  background-color: #f06658;
+  border-color: #ee5141;
+}
+.btn-3:hover,
+.btn-3:focus,
+.btn-3:active {
+  color: #fff;
+  background-color: #ed4433;
+  border-color: #dd2614;
+}
+.btn-2 {
+  color: #fff;
+  background-color: #fcb145;
+  border-color: #fca62c;
+}
+.btn-2:hover,
+.btn-2:focus,
+.btn-2:active {
+  color: #fff;
+  background-color: #fba01d;
+  border-color: #e78a04;
+}
+.btn-1 {
+  color: #fff;
+  background-color: #449bf7;
+  border-color: #2c8ef6;
+}
+.btn-1:hover,
+.btn-1:focus,
+.btn-1:active {
+  color: #fff;
+  background-color: #1d86f5;
+  border-color: #096fdb;
+}
+
+.taskline-input-wrapper {
+  height:34px;
+  position:absolute;
+  left:52px;
+  right:15px;
+}
+.taskline-input {
+  width:100%;
+  position:absolute;
+  background:none;
+  border:none;
+  outline:none;
+  box-shadow:none;
+  display:block;
+  z-index:15;
+  vertical-align:top;
+}
+.taskline-input:focus {
+  border:none;
+  outline:none;
+  box-shadow:none;
+  border-color: #66afe9;
+  -webkit-box-shadow:none;
+}
+.task_tags {
+  margin:8px 0 0 8px;
+  font-size:0.8em;
+  float:right;
+  position:relative;
+  z-index:50;
+}
+.task_date {
+  margin:9px 0 0 8px;
+  padding:2px 5px;
+  font-size: 0.8em;
+  line-height: 1;
+  color:#666;
+  text-align:center;
+  white-space:nowrap;
+  vertical-align:baseline;
+  border-radius:.25em;
+  background-color:#F2F4F7;
+  border:1px solid #e5e5e5;  
+  float:right;
+  position:relative;
+  z-index:50;
+  cursor:default;
+}
+.taskline-button-white {
+  position:relative;
+  z-index:50;
+  margin-top:9px;
+  color:transparent;
+  text-shadow:1px 1px transparent;
+}
+.taskline-button-gray {
+  margin-top:9px;
+  color:#999;
+  text-shadow:1px 1px #FFF;
+}
+.taskline-button-gray:hover {
+  color:#428bca;
+  cursor:pointer;
+}
+.strike {
+  color:#999;    
+  text-decoration:line-through;
+}
+
+/* Task Info */
+.task-info-wrapper {
+  
+}
+
+/* Margin, must be last! */
+.no-margin { margin:0; }
